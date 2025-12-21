@@ -9,14 +9,9 @@ public class AutoMain {
 
 		ApplicationContext context = new AnnotationConfigApplicationContext("com.spring.autowiring");
 
-		Rectangle rect = context.getBean(Rectangle.class);
-		rect.calcArea(10, 20);
-
-		Parallelogram parallelogram = context.getBean(Parallelogram.class);
-		parallelogram.calcArea(10, 20);
-
-		IShape shape = context.getBean(Triangle.class);
-		shape.calcArea(10, 20);
+		ShapeFactory factory = (ShapeFactory) context.getBean("shapeFactory");
+		// ShapeFactory factory = context.getBean("shapeFactory", ShapeFactory.class);
+		factory.printArea(10, 20);
 
 	}
 
