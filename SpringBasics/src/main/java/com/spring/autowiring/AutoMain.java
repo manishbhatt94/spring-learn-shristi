@@ -9,8 +9,8 @@ public class AutoMain {
 
 		ApplicationContext context = new AnnotationConfigApplicationContext("com.spring.autowiring");
 
-		ShapeFactory factory = (ShapeFactory) context.getBean("shapeFactory");
-		// ShapeFactory factory = context.getBean("shapeFactory", ShapeFactory.class);
+		// ShapeFactory factory = (ShapeFactory) context.getBean("shapeFactory");
+		ShapeFactory factory = context.getBean("shapeFactory", ShapeFactory.class);
 		factory.printArea(10, 20);
 
 	}

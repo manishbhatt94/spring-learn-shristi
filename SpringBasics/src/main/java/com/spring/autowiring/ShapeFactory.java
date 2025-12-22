@@ -7,30 +7,39 @@ import org.springframework.stereotype.Component;
 @Component
 public class ShapeFactory {
 
-	// auto-wiring by type
+	// Auto-wiring by type.
+	// @Qualifier(<bean-name>) is required since the interface type IShape has
+	// multiple implementation classes.
 	@Autowired
 	@Qualifier("rectangle")
+	// Field based auto-wiring - just field is present - with neither a setter for
+	// this field, nor a parameterized constructor that initializes this field.
 	private IShape shape; // = new Rectangle
 
-	// auto-wiring by name - instance variable name & bean name are same
+	// Auto-wiring by name.
+	// - Instance variable name & bean name are same.
 	@Autowired
+	// Field based auto-wiring - just field is present - with neither a setter for
+	// this field, nor a parameterized constructor that initializes this field.
 	private IShape triangle;
 
-	// auto-wiring by constructor
+	// Auto-wiring by constructor.
 	private IShape myShape;
 
-	// auto-wiring by constructor
-	// - need to use @Qualifier(<name of implementation class bean>)
-	// since there are multiple instance fields of IShape type
+	// Auto-wiring by constructor.
+	// - Need to use @Qualifier(<name of implementation class bean>)
+	// since there are multiple instance fields of IShape type.
+	// - Note: when injecting dependency using constructor, we don't
+	// put @Autowired annotation above the construct.
 	public ShapeFactory(@Qualifier("parallelogram") IShape myShape) {
 		super();
 		this.myShape = myShape;
 	}
 
-	// auto-wiring using setter
+	// Auto-wiring using setter
 	private IShape anotherShape;
 
-	// auto-wiring using setter
+	// Auto-wiring using setter
 	@Autowired
 	public void setAnotherShape(@Qualifier("triangle") IShape anotherShape) {
 		this.anotherShape = anotherShape;

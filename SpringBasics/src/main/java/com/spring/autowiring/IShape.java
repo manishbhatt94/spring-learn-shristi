@@ -1,7 +1,8 @@
 package com.spring.autowiring;
 
-// Should we add @Component annotation here or not
-// @Component
+// We should NOT @Component annotation on an interface
+// since interfaces cannot be instantiated.
+// @Component -- Don't add this on interfaces
 public interface IShape {
 
 	void calcArea(int x, int y);
