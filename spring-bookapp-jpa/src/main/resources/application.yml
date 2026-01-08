@@ -1,0 +1,11 @@
+spring:
+    application:
+        name: spring-bookapp-jpa
+    datasource:
+        url: jdbc:mysql://localhost:3306/jfsseptjava?rewriteBatchedStatements=true
+        username: root
+        password: manish
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: create
