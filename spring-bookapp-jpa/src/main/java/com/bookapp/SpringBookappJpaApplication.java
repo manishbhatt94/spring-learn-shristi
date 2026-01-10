@@ -23,9 +23,29 @@ public class SpringBookappJpaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		populateData();
-
+		// populateData();
 		bookService.getAll().forEach(System.out::println);
+		System.out.println();
+
+		System.out.println("--------- By Author ------------");
+		bookService.getByAuthor("George Orwell").forEach(System.out::println);
+		System.out.println();
+
+		System.out.println("--------- By Category ------------");
+		bookService.getByCategory("Thriller").forEach(System.out::println);
+		System.out.println();
+
+		System.out.println("--------- By Category & Upto Price ------------");
+		bookService.getByCategoryUptoPrice("Fantasy", 750).forEach(System.out::println);
+		System.out.println();
+
+		System.out.println("--------- By Author & Upto Price ------------");
+		bookService.getByAuthorPrice("Dan Brown", 600).forEach(System.out::println);
+		System.out.println();
+
+		System.out.println("--------- By Category & Title contains ------------");
+		bookService.getByCategoryTitleContains("Thriller", "Girl").forEach(System.out::println);
+		System.out.println();
 
 	}
 
@@ -78,6 +98,9 @@ public class SpringBookappJpaApplication implements CommandLineRunner {
 		bookService.addBook(bookDto);
 
 		bookDto = new BookDto(null, "Gone Girl", 620.0, "Gillian Flynn", "Thriller", LocalDate.of(2012, 6, 5));
+		bookService.addBook(bookDto);
+
+		bookDto = new BookDto(null, "Angels & Demons", 580.0, "Dan Brown", "Thriller", LocalDate.of(2000, 5, 1));
 		bookService.addBook(bookDto);
 
 	}

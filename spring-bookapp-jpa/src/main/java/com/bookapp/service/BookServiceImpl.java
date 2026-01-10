@@ -71,4 +71,44 @@ public class BookServiceImpl implements IBookService {
 		throw new BookNotFoundException("Invalid ID: " + bookId);
 	}
 
+	@Override
+	public List<BookDto> getByAuthor(String author) throws BookNotFoundException {
+		List<Book> books = repository.findByAuthor(author);
+		return toBookDtoList(books, String.format("Books by author: %s not found.", author));
+	}
+
+	@Override
+	public List<BookDto> getByCategory(String category) throws BookNotFoundException {
+		List<Book> books = repository.readByCategory(category);
+		return toBookDtoList(books, String.format("Books by category: %s not found.", category));
+	}
+
+	@Override
+	public List<BookDto> getByCategoryUptoPrice(String category, double price) throws BookNotFoundException {
+		List<Book> books = repository.queryByCategoryAndPriceLessThanEqual(category, price);
+		return toBookDtoList(books,
+				String.format("Books by category: %s & price upto: ₹%.2f not found.", category, price));
+	}
+
+	@Override
+	public List<BookDto> getByAuthorPrice(String author, double price) {
+		List<Book> books = repository.findByAuthorPriceLessThan(author, price);
+		return toBookDtoList(books,
+				String.format("Books by author: %s & price less than: ₹%.2f not found.", author, price));
+	}
+
+	@Override
+	public List<BookDto> getByCategoryTitleContains(String category, String title) throws BookNotFoundException {
+		List<Book> books = repository.findByCategoryTitleContains(category, title);
+		return toBookDtoList(books,
+				String.format("Books by category: %s & title containing: ₹%s not found.", category, title));
+	}
+
+	private List<BookDto> toBookDtoList(List<Book> books, String notFoundMessage) throws BookNotFoundException {
+		if (books.isEmpty()) {
+			throw new BookNotFoundException(notFoundMessage);
+		}
+		return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
+	}
+
 }
