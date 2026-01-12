@@ -36,6 +36,28 @@ public class Student {
 	@Column(length = 50)
 	private String department; // CSE, ECE, EE, ME, Civil
 
+	/**
+	 * If we don't provide cascade, then we get error:
+	 * org.hibernate.TransientPropertyValueException which is a sub class of
+	 * org.hibernate.TransientObjectException
+	 *
+	 * TransientPropertyValueException: 'Student' references an unsaved transient
+	 * instance of 'Address' (persist the transient instance before flushing).
+	 *
+	 * Either we provide cascade value (which will save the referenced Address
+	 * entity automatically when we save the Student entity). Or, we manually save
+	 * the Address entity first, and then save the Student entity.
+	 *
+	 * CascadeType.ALL - Cascades (propagates) all operations (e.g. save i.e.
+	 * persist, delete, etc).
+	 *
+	 * CascadeType.PERSIST - Cascades (propagates) only the save i.e. persist
+	 * operation.
+	 *
+	 * Entity lifecycle states like Transient, Managed (Persisted), Detached etc.
+	 * are part of Hibernate Entity Lifecycle, which is discussed at link:
+	 * https://www.baeldung.com/hibernate-entity-lifecycle
+	 */
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
