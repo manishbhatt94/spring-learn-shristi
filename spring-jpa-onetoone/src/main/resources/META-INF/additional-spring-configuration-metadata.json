@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "studentapp.bootstrap.seed-initial-data",
+  "type": "java.lang.Boolean",
+  "description": "Whether to seed initial sample data"
+}]}

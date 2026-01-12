@@ -3,6 +3,7 @@ package com.studentapp.bootstrap;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.studentapp.model.Address;
@@ -14,12 +15,24 @@ public class DataInitializer {
 
 	private final IStudentRepository studentRepository;
 
+	@Value("${studentapp.bootstrap.seed-initial-data}")
+	private boolean shouldSeed;
+
 	public DataInitializer(IStudentRepository studentRepository) {
 		super();
 		this.studentRepository = studentRepository;
 	}
 
 	public void initData() {
+
+		if (shouldSeed == false) {
+			System.out.println("DataInitializer: Config studentapp.bootstrap.seed-initial-data is false.");
+			System.out.println("DataInitializer: Skipping initial data seeding.");
+			return;
+		}
+
+		System.out.println("DataInitializer: Config studentapp.bootstrap.seed-initial-data is true.");
+		System.out.println("DataInitializer: Attempting to seed initial data.");
 
 		List<Student> students = new ArrayList<>();
 
@@ -105,6 +118,8 @@ public class DataInitializer {
 
 		// Save all in one go
 		studentRepository.saveAll(students);
+
+		System.out.println("DataInitializer: Initial data seeded.");
 
 	}
 
