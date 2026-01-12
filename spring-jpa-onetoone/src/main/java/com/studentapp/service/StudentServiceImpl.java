@@ -2,11 +2,13 @@ package com.studentapp.service;
 
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import com.studentapp.exception.StudentNotFoundException;
+import com.studentapp.model.Student;
 import com.studentapp.model.StudentDto;
 import com.studentapp.repository.IStudentRepository;
+import com.studentapp.util.StudentMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,54 +17,51 @@ import lombok.RequiredArgsConstructor;
 public class StudentServiceImpl implements IStudentService {
 
 	private final IStudentRepository repository;
-	private final ModelMapper mapper;
+	private final StudentMapper mapper;
 
 	@Override
 	public void addStudent(StudentDto studentDto) {
-		// TODO Auto-generated method stub
-
+		Student student = mapper.convertToEntity(studentDto);
+		repository.save(student);
 	}
 
 	@Override
 	public void updateStudent(StudentDto studentDto) {
-		// TODO Auto-generated method stub
-
+		Student student = mapper.convertToEntity(studentDto);
+		repository.save(student);
 	}
 
 	@Override
 	public void deleteStudent(int studentId) {
-		// TODO Auto-generated method stub
-
+		repository.deleteById(studentId);
 	}
 
 	@Override
 	public List<StudentDto> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAll().stream().map(mapper::convertToDto).toList();
 	}
 
 	@Override
-	public StudentDto getById(int studentId) {
-		// TODO Auto-generated method stub
-		return null;
+	public StudentDto getById(int studentId) throws StudentNotFoundException {
+		return repository.findById(studentId).map(mapper::convertToDto).orElseThrow(
+				() -> new StudentNotFoundException(String.format("Student with ID: %d not found.", studentId)));
 	}
 
 	@Override
 	public List<StudentDto> getByDepartment(String department) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findByDepartment(department).stream().map(mapper::convertToDto).toList();
 	}
 
 	@Override
 	public List<StudentDto> getByCity(String city) {
-		// TODO Auto-generated method stub
-		return null;
+		// return
+		// repository.findByAddressCity(city).stream().map(mapper::convertToDto).toList();
+		return repository.findByCity(city).stream().map(mapper::convertToDto).toList();
 	}
 
 	@Override
 	public List<StudentDto> getByDeptAndCity(String department, String city) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findByDeptCity(department, city).stream().map(mapper::convertToDto).toList();
 	}
 
 }
