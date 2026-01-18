@@ -1,0 +1,15 @@
+spring:
+    application:
+        name: spring-jpa-onetomany
+    datasource:
+        url: jdbc:mysql://localhost:3306/jfsseptjava?rewriteBatchedStatements=true
+        username: root
+        password: manish
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: create
+
+restaurantapp:
+    bootstrap:
+        seed-initial-data: false
