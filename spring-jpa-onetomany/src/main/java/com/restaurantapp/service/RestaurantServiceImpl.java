@@ -3,92 +3,94 @@ package com.restaurantapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.restaurantapp.model.Category;
+import com.restaurantapp.model.Restaurant;
 import com.restaurantapp.model.RestaurantDto;
 import com.restaurantapp.repository.IRestaurantRepository;
+import com.restaurantapp.util.RestaurantMapper;
 
+@Service
 public class RestaurantServiceImpl implements IRestaurantService {
 
 	@Autowired
 	private IRestaurantRepository restaurantRepository;
 
+	@Autowired
+	private RestaurantMapper mapper;
+
 	@Override
 	public void addRestaurant(RestaurantDto restaurantDto) {
-		// TODO Auto-generated method stub
-
+		Restaurant restaurant = mapper.convertToRestaurantEntity(restaurantDto);
+		restaurantRepository.save(restaurant);
 	}
 
 	@Override
 	public void updateRestaurant(RestaurantDto restaurantDto) {
-		// TODO Auto-generated method stub
-
+		Restaurant restaurant = mapper.convertToRestaurantEntity(restaurantDto);
+		restaurantRepository.save(restaurant);
 	}
 
 	@Override
 	public void deleteRestaurant(int restaurantId) {
-		// TODO Auto-generated method stub
-
+		restaurantRepository.deleteById(restaurantId);
 	}
 
 	@Override
 	public List<RestaurantDto> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantRepository.findAll().stream().map(mapper::convertToRestaurantDto).toList();
 	}
 
 	@Override
 	public RestaurantDto getById(int restaurantId) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantRepository.findById(restaurantId).map(mapper::deepConvertToRestaurantDto).orElse(null);
 	}
 
 	@Override
 	public List<RestaurantDto> getByCity(String city) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantRepository.findByCity(city).stream().map(mapper::convertToRestaurantDto).toList();
 	}
 
 	@Override
 	public List<RestaurantDto> getByItemTypeCuisine(String itemType, String cuisine) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantRepository.findByItemTypeCuisine(itemType, cuisine).stream()
+				.map(mapper::convertToRestaurantDto).toList();
 	}
 
 	@Override
 	public List<RestaurantDto> getByCityAndCuisine(String city, String cuisine) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantRepository.findByCityAndCuisine(city, cuisine).stream().map(mapper::convertToRestaurantDto)
+				.toList();
 	}
 
 	@Override
 	public List<RestaurantDto> getByCategory(Category category) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantRepository.findByCategory(category).stream().map(mapper::convertToRestaurantDto).toList();
 	}
 
 	@Override
 	public List<RestaurantDto> getByCategoryItemType(Category category, String itemType) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantRepository.findByCategoryItemType(category, itemType).stream()
+				.map(mapper::convertToRestaurantDto).toList();
 	}
 
 	@Override
 	public List<RestaurantDto> getByCategoryItemName(Category category, String itemName) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantRepository.findByCategoryItemName(category, itemName).stream()
+				.map(mapper::convertToRestaurantDto).toList();
 	}
 
 	@Override
 	public List<RestaurantDto> getByItemNameContains(String itemName) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantRepository.findByItemNameContains(itemName).stream().map(mapper::convertToRestaurantDto)
+				.toList();
 	}
 
 	@Override
 	public List<RestaurantDto> getByItemNamePriceLessThan(String itemName, double price) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantRepository.findByItemNamePriceLessThan(itemName, price).stream()
+				.map(mapper::convertToRestaurantDto).toList();
 	}
 
 }
