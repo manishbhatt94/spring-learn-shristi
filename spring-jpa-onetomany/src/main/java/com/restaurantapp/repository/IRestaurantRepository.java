@@ -44,7 +44,7 @@ public interface IRestaurantRepository extends JpaRepository<Restaurant, Integer
 
 	@Query("""
 			SELECT r FROM Restaurant r JOIN r.menuItems mi
-			WHERE mi.itemName = ?1 AND mi.price <= ?2
+			WHERE mi.price <= ?2 AND mi.itemName LIKE %?1%
 			""")
 	List<Restaurant> findByItemNamePriceLessThan(String itemName, double price);
 
