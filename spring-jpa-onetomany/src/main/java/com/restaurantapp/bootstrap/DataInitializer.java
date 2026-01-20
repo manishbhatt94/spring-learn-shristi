@@ -172,8 +172,8 @@ public class DataInitializer {
 			new MenuItem(null, "Mughlai Paratha", 60.00, ItemType.DINNER.name())
 		// @formatter:on
 		));
-		Restaurant restaurant9 = new Restaurant(null, "Tunday Kababi", "Lucknow", Cuisine.NI.name(), Category.NONVEG,
-				menuItems9);
+		Restaurant restaurant9 = new Restaurant(null, "Tunday Kababi", "Lucknow", Cuisine.NI.getCuisineType(),
+				Category.NONVEG, menuItems9);
 		restaurants.add(restaurant9);
 
 		// Restaurant 10: Royal Cafe (Lucknow)
@@ -183,8 +183,8 @@ public class DataInitializer {
 			new MenuItem(null, "Paneer Butter Masala", 350.00, ItemType.DINNER.name())
 		// @formatter:on
 		));
-		Restaurant restaurant10 = new Restaurant(null, "Royal Cafe", "Lucknow", Cuisine.FASTFOOD.name(), Category.VEG,
-				menuItems10);
+		Restaurant restaurant10 = new Restaurant(null, "Royal Cafe", "Lucknow", Cuisine.FASTFOOD.getCuisineType(),
+				Category.VEG, menuItems10);
 		restaurants.add(restaurant10);
 
 		// Restaurant 11: Peter Cat (Kolkata)
@@ -194,8 +194,8 @@ public class DataInitializer {
 			new MenuItem(null, "Chicken Hakka Noodles", 420.00, ItemType.DINNER.name())
 		// @formatter:on
 		));
-		Restaurant restaurant11 = new Restaurant(null, "Peter Cat", "Kolkata", Cuisine.NI.name(), Category.NONVEG,
-				menuItems11);
+		Restaurant restaurant11 = new Restaurant(null, "Peter Cat", "Kolkata", Cuisine.NI.getCuisineType(),
+				Category.NONVEG, menuItems11);
 		restaurants.add(restaurant11);
 
 		// Restaurant 12: Mocambo (Kolkata)
@@ -205,8 +205,8 @@ public class DataInitializer {
 			new MenuItem(null, "Prawn Fried Rice", 480.00, ItemType.DINNER.name())
 		// @formatter:on
 		));
-		Restaurant restaurant12 = new Restaurant(null, "Mocambo", "Kolkata", Cuisine.CHINESE.name(), Category.NONVEG,
-				menuItems12);
+		Restaurant restaurant12 = new Restaurant(null, "Mocambo", "Kolkata", Cuisine.CHINESE.getCuisineType(),
+				Category.NONVEG, menuItems12);
 		restaurants.add(restaurant12);
 
 		// Restaurant 13: Old Harbour Hotel (Kochi)
@@ -216,7 +216,7 @@ public class DataInitializer {
 			new MenuItem(null, "Malabar Paratha", 45.00, ItemType.DINNER.name())
 		// @formatter:on
 		));
-		Restaurant restaurant13 = new Restaurant(null, "Old Harbour Hotel", "Kochi", Cuisine.COASTAL.name(),
+		Restaurant restaurant13 = new Restaurant(null, "Old Harbour Hotel", "Kochi", Cuisine.COASTAL.getCuisineType(),
 				Category.NONVEG, menuItems13);
 		restaurants.add(restaurant13);
 
@@ -227,8 +227,8 @@ public class DataInitializer {
 			new MenuItem(null, "Vegetable Cutlet", 55.00, ItemType.SNACKS.name())
 		// @formatter:on
 		));
-		Restaurant restaurant14 = new Restaurant(null, "Indian Coffee House", "Kochi", Cuisine.SI.name(), Category.VEG,
-				menuItems14);
+		Restaurant restaurant14 = new Restaurant(null, "Indian Coffee House", "Kochi", Cuisine.SI.getCuisineType(),
+				Category.VEG, menuItems14);
 		restaurants.add(restaurant14);
 
 		// Restaurant 15: 1000 Oaks (Pune)
@@ -238,7 +238,7 @@ public class DataInitializer {
 			new MenuItem(null, "Veg Nachos", 380.00, ItemType.SNACKS.name())
 		// @formatter:on
 		));
-		Restaurant restaurant15 = new Restaurant(null, "1000 Oaks", "Pune", Cuisine.NI.name(), Category.VEG,
+		Restaurant restaurant15 = new Restaurant(null, "1000 Oaks", "Pune", Cuisine.NI.getCuisineType(), Category.VEG,
 				menuItems15);
 		restaurants.add(restaurant15);
 
@@ -249,8 +249,8 @@ public class DataInitializer {
 			new MenuItem(null, "Pasta in White Sauce", 260.00, ItemType.DINNER.name())
 		// @formatter:on
 		));
-		Restaurant restaurant16 = new Restaurant(null, "Marz-O-Rin", "Pune", Cuisine.FASTFOOD.name(), Category.NONVEG,
-				menuItems16);
+		Restaurant restaurant16 = new Restaurant(null, "Marz-O-Rin", "Pune", Cuisine.FASTFOOD.getCuisineType(),
+				Category.NONVEG, menuItems16);
 		restaurants.add(restaurant16);
 
 		// Save all in one go
