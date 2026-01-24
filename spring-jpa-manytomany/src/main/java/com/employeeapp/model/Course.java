@@ -1,5 +1,6 @@
 package com.employeeapp.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -43,6 +44,6 @@ public class Course {
 	private String instructor;
 
 	@ManyToMany(mappedBy = "courses")
-	private Set<Employee> employees;
+	private Set<Employee> employees = new HashSet<>();
 
 }

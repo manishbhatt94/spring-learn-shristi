@@ -1,5 +1,6 @@
 package com.employeeapp.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -37,6 +38,6 @@ public class Employee {
 	@ManyToMany
 	// create a junction table for adding both keys
 	@JoinTable(name = "employee_courses", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
-	private Set<Course> courses;
+	private Set<Course> courses = new HashSet<>();
 
 }
