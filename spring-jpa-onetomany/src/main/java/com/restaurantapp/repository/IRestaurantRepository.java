@@ -19,7 +19,7 @@ public interface IRestaurantRepository extends JpaRepository<Restaurant, Integer
 	List<Restaurant> findByCategory(Category category);
 
 	@Query("""
-			SELECT r FROM Restaurant r JOIN r.menuItems mi
+			SELECT r FROM Restaurant r JOIN FETCH r.menuItems mi
 			WHERE mi.itemType = ?1 AND r.cuisine = ?2
 			""")
 	List<Restaurant> findByItemTypeCuisine(String itemType, String cuisine);
