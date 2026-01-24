@@ -27,8 +27,8 @@ public class AppClient {
 
 	public void run() {
 
-		addCoursesAndEmployees();
-		// getAll();
+		// addCoursesAndEmployees();
+		getAll();
 
 	}
 
@@ -39,24 +39,27 @@ public class AppClient {
 		// add courses to database
 		CourseDto courseDto1 = courseService.addCourse(new CourseDto(null, "Core Java for Beginners", Mode.ONLINE,
 				Category.BE.getCategory(), CourseLevel.BEGINNER, "Sripriya Mathan", null));
+		System.out.println("Added course: " + courseDto1 + "\n");
 
 		CourseDto courseDto2 = courseService.addCourse(new CourseDto(null, "Gen AI - A bird's eye view", Mode.ONLINE,
 				Category.ML.getCategory(), CourseLevel.BEGINNER, "Gaurav Sen", null));
+		System.out.println("Added course: " + courseDto2 + "\n");
 
 		CourseDto courseDto3 = courseService.addCourse(new CourseDto(null, "Architecting React Apps", Mode.OFFLINE,
 				Category.FE.getCategory(), CourseLevel.INTERMEDIATE, "Dan Abramov", null));
+		System.out.println("Added course: " + courseDto3 + "\n");
 
 		// for working with employee
 
 		// create a list
 		List<CourseDto> coursesList = Arrays.asList(courseDto1, courseDto2, courseDto3);
-		System.out.println(coursesList);
 
 		// add to a set
 		Set<CourseDto> courses = new HashSet<>(coursesList);
 		// create employeeDtos and add course to employee
-		EmployeeDto employee = new EmployeeDto(null, "Rakesh Roshan", "Tech", "Pune", courses);
-		employeeService.addEmployee(employee);
+		EmployeeDto employeeDto = employeeService
+				.addEmployee(new EmployeeDto(null, "Rakesh Roshan", "Tech", "Pune", courses));
+		System.out.println("Added employee: " + employeeDto + "\n");
 
 		System.out.println("Successfully added 3 more courses & 1 more employee - via Service methods.");
 		System.out.println();
