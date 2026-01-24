@@ -1,0 +1,9 @@
+{
+	"properties": [
+		{
+			"name": "employeeapp.bootstrap.seed-initial-data",
+			"type": "java.lang.Boolean",
+			"description": "A description for 'employeeapp.bootstrap.seed-initial-data'"
+		}
+	]
+}
