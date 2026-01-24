@@ -6,7 +6,7 @@ import com.employeeapp.model.CourseDto;
 
 public interface ICourseService {
 
-	void addCourse(CourseDto courseDto);
+	CourseDto addCourse(CourseDto courseDto);
 
 	void updateCourse(CourseDto courseDto);
 

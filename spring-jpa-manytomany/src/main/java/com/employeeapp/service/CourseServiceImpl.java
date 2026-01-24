@@ -19,9 +19,10 @@ public class CourseServiceImpl implements ICourseService {
 	private final EmployeeMapper mapper;
 
 	@Override
-	public void addCourse(CourseDto courseDto) {
+	public CourseDto addCourse(CourseDto courseDto) {
 		Course course = mapper.convertToCourseEntity(courseDto);
-		courseRepository.save(course);
+		Course savedCourse = courseRepository.save(course);
+		return mapper.convertToCourseDto(savedCourse);
 	}
 
 	@Override
