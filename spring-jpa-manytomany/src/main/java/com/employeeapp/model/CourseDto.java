@@ -3,16 +3,21 @@ package com.employeeapp.model;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @ToString(exclude = "employees")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class CourseDto {
 
+	@EqualsAndHashCode.Include
 	private Integer courseId;
 
 	private String courseName;

@@ -3,6 +3,7 @@ package com.employeeapp.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.employeeapp.config.EmployeeMapper;
 import com.employeeapp.model.CourseLevel;
@@ -21,9 +22,10 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	private final EmployeeMapper mapper;
 
 	@Override
-	public void addEmployee(EmployeeDto employeeDto) {
+	public EmployeeDto addEmployee(EmployeeDto employeeDto) {
 		Employee employee = mapper.convertToEmployeeEntity(employeeDto);
-		employeeRepository.save(employee);
+		Employee savedEmployee = employeeRepository.save(employee);
+		return mapper.convertToEmployeeDto(savedEmployee);
 	}
 
 	@Override
@@ -43,6 +45,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<EmployeeDto> getAll() {
 		return mapper.convertToEmployeeDto(employeeRepository.findAll());
 	}

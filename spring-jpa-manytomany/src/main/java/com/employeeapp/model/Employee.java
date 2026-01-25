@@ -13,18 +13,25 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 public class Employee {
 
 	@Id
 	@GeneratedValue(generator = "empl_gen", strategy = GenerationType.AUTO)
 	@SequenceGenerator(name = "empl_gen", sequenceName = "empl_seq", initialValue = 1, allocationSize = 1)
+	@EqualsAndHashCode.Include
 	private Integer employeeId;
 
 	private String employeeName;

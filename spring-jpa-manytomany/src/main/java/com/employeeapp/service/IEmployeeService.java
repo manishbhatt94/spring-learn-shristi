@@ -8,7 +8,7 @@ import com.employeeapp.model.Mode;
 
 public interface IEmployeeService {
 
-	void addEmployee(EmployeeDto employeeDto);
+	EmployeeDto addEmployee(EmployeeDto employeeDto);
 
 	void updateEmployee(EmployeeDto employeeDto);
 

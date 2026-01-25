@@ -3,14 +3,21 @@ package com.employeeapp.model;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class EmployeeDto {
 
+	@EqualsAndHashCode.Include
 	private Integer employeeId;
 
 	private String employeeName;
