@@ -1,7 +1,5 @@
 package com.employeeapp.model;
 
-import java.util.Set;
-
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = "employees")
+@ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class CourseDto {
 
@@ -29,7 +27,5 @@ public class CourseDto {
 	private CourseLevel courseLevel;
 
 	private String instructor;
-
-	private Set<EmployeeDto> employees;
 
 }

@@ -38,15 +38,15 @@ public class AppClient {
 
 		// add courses to database
 		CourseDto courseDto1 = courseService.addCourse(new CourseDto(null, "Core Java for Beginners", Mode.ONLINE,
-				Category.BE.getCategory(), CourseLevel.BEGINNER, "Sripriya Mathan", null));
+				Category.BE.getCategory(), CourseLevel.BEGINNER, "Sripriya Mathan"));
 		System.out.println("Added course: " + courseDto1 + "\n");
 
 		CourseDto courseDto2 = courseService.addCourse(new CourseDto(null, "Gen AI - A bird's eye view", Mode.ONLINE,
-				Category.ML.getCategory(), CourseLevel.BEGINNER, "Gaurav Sen", null));
+				Category.ML.getCategory(), CourseLevel.BEGINNER, "Gaurav Sen"));
 		System.out.println("Added course: " + courseDto2 + "\n");
 
 		CourseDto courseDto3 = courseService.addCourse(new CourseDto(null, "Architecting React Apps", Mode.OFFLINE,
-				Category.FE.getCategory(), CourseLevel.INTERMEDIATE, "Dan Abramov", null));
+				Category.FE.getCategory(), CourseLevel.INTERMEDIATE, "Dan Abramov"));
 		System.out.println("Added course: " + courseDto3 + "\n");
 
 		// for working with employee
