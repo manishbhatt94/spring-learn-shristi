@@ -27,12 +27,16 @@ public class EmployeeMapper {
 		return employeeDto;
 	}
 
+	public List<EmployeeDto> deepConvertToEmployeeDto(List<Employee> employees) {
+		return employees.stream().map(this::deepConvertToEmployeeDto).toList();
+	}
+
 	public EmployeeDto convertToEmployeeDto(Employee employee) {
 		return mapper.map(employee, EmployeeDto.class);
 	}
 
 	public List<EmployeeDto> convertToEmployeeDto(List<Employee> employees) {
-		return employees.stream().map(this::deepConvertToEmployeeDto).toList();
+		return employees.stream().map(this::convertToEmployeeDto).toList();
 	}
 
 	public Employee convertToEmployeeEntity(EmployeeDto employeeDto) {
