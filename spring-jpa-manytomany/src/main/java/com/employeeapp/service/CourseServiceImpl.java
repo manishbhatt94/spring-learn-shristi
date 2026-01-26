@@ -10,6 +10,7 @@ import com.employeeapp.model.Category;
 import com.employeeapp.model.Course;
 import com.employeeapp.model.CourseDto;
 import com.employeeapp.model.CourseLevel;
+import com.employeeapp.model.Employee;
 import com.employeeapp.model.Mode;
 import com.employeeapp.repository.ICourseRepository;
 
@@ -55,7 +56,19 @@ public class CourseServiceImpl implements ICourseService {
 	@Override
 	@Transactional
 	public void deleteCourse(int courseId) {
-		courseRepository.deleteById(courseId);
+		// courseRepository.deleteById(courseId);
+		// Manually delete associations first.
+		// For deleting an entity that is on the inverse side (that uses mappedBy) of
+		// the many-to-many relationship.
+		// For entity that is on the owning side (that uses JoinTable), Hibernate
+		// handles deletion from junction table.
+		Course course = courseRepository.findById(courseId).orElseThrow(() -> new RuntimeException("Course not found"));
+		// Break links from both sides
+		for (Employee employee : course.getEmployees()) {
+			employee.getCourses().remove(course);
+		}
+		course.getEmployees().clear();
+		courseRepository.delete(course);
 	}
 
 	/**

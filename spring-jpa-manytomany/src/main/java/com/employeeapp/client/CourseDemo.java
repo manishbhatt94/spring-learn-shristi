@@ -69,7 +69,7 @@ public class CourseDemo {
 		getByEmployeeCity("NonExistentCity");
 
 		// deleteCourse
-		// deleteCourse(11);
+		deleteCourse(11);
 
 		System.out.println("\n========================================");
 		System.out.println("COURSE SERVICE DEMO - Completed");
