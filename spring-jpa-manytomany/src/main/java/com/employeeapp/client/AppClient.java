@@ -25,10 +25,13 @@ public class AppClient {
 	@Autowired
 	private IEmployeeService employeeService;
 
+	@Autowired
+	private EmployeeDemo employeeDemo;
+
 	public void run() {
 
 		// addCoursesAndEmployees();
-		getAll();
+		employeeDemo.run();
 
 	}
 
@@ -70,15 +73,7 @@ public class AppClient {
 				.addEmployee(new EmployeeDto(null, "Rakesh Roshan", "Tech", "Pune", courses));
 		System.out.println("Added employee: " + employeeDto + "\n");
 
-		System.out.println("Successfully added 3 more courses & 1 more employee - via Service methods.");
-		System.out.println();
-
-	}
-
-	private void getAll() {
-
-		System.out.println("\n------ getAll --------\n");
-		employeeService.getAll().forEach(System.out::println);
+		System.out.println("Successfully added 5 more courses & 1 more employee - via Service methods.");
 		System.out.println();
 
 	}
