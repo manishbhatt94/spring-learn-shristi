@@ -78,32 +78,4 @@ public class AppClient {
 
 	}
 
-//	private void getById(int restaurantId) {
-//
-//		System.out.println("\n------ getById --------\n");
-//		System.out.println("> restaurantId = " + restaurantId);
-//		System.out.println(restaurantService.getById(restaurantId));
-//		System.out.println();
-//
-//	}
-//
-//	private void getByCity(String city) {
-//
-//		System.out.println("\n------ getByCity --------\n");
-//		System.out.println("> city = " + city);
-//		restaurantService.getByCity(city).forEach(System.out::println);
-//		System.out.println();
-//
-//	}
-//
-//	private void getByItemTypeCuisine(ItemType itemType, Cuisine cuisine) {
-//
-//		System.out.println("\n------ getByItemTypeCuisine --------\n");
-//		System.out.println("> itemType = " + itemType.name());
-//		System.out.println("> cuisine = " + cuisine.getCuisineType());
-//		restaurantService.getByItemTypeCuisine(itemType.name(), cuisine.getCuisineType()).forEach(System.out::println);
-//		System.out.println();
-//
-//	}
-
 }

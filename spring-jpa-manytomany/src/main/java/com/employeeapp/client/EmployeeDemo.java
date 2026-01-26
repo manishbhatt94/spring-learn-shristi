@@ -23,6 +23,10 @@ public class EmployeeDemo {
 
 	public void run() {
 
+		System.out.println("\n========================================");
+		System.out.println("EMPLOYEE SERVICE DEMO - Testing All Methods");
+		System.out.println("========================================\n");
+
 		// getAll
 		getAll();
 
@@ -75,11 +79,15 @@ public class EmployeeDemo {
 		getByCourseNameAndMode("Data Structures and Algorithms in Python", Mode.OFFLINE);
 		getByCourseNameAndMode("Full Stack Java Development with Spring Boot", Mode.OFFLINE); // No match
 
+		System.out.println("\n========================================");
+		System.out.println("EMPLOYEE SERVICE DEMO - Completed");
+		System.out.println("========================================\n");
+
 	}
 
 	private void getAll() {
 
-		System.out.println("\n------ getAll --------\n");
+		System.out.println("\n------ EmployeeDemo.getAll --------\n");
 		employeeService.getAll().forEach(System.out::println);
 		System.out.println();
 
