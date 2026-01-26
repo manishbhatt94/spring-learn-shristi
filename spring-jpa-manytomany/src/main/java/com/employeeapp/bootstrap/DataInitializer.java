@@ -9,6 +9,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.employeeapp.model.Category;
 import com.employeeapp.model.Course;
 import com.employeeapp.model.CourseLevel;
 import com.employeeapp.model.Employee;
@@ -50,26 +51,26 @@ public class DataInitializer {
 		// Create 10 course entities, and save them all.
 		List<Course> courses = new ArrayList<>();
 
-		courses.add(new Course(null, "Full Stack Java Development with Spring Boot", Mode.ONLINE, "Backend",
-				CourseLevel.INTERMEDIATE, "Rajesh Kumar", new HashSet<>()));
-		courses.add(new Course(null, "Advanced React and TypeScript", Mode.HYBRID, "Frontend", CourseLevel.ADVANCED,
-				"Priya Sharma", new HashSet<>()));
-		courses.add(new Course(null, "Microservices Architecture with Spring Cloud", Mode.ONLINE, "Backend",
-				CourseLevel.ADVANCED, "Amit Patel", new HashSet<>()));
-		courses.add(new Course(null, "AWS Cloud Practitioner Essentials", Mode.ONLINE, "Cloud", CourseLevel.BEGINNER,
-				"Sneha Reddy", new HashSet<>()));
-		courses.add(new Course(null, "Data Structures and Algorithms in Python", Mode.OFFLINE, "Programming",
-				CourseLevel.INTERMEDIATE, "Vikram Singh", new HashSet<>()));
-		courses.add(new Course(null, "DevOps with Docker and Kubernetes", Mode.ONLINE, "DevOps", CourseLevel.ADVANCED,
-				"Anita Desai", new HashSet<>()));
-		courses.add(new Course(null, "Angular for Enterprise Applications", Mode.HYBRID, "Frontend",
+		courses.add(new Course(null, "Full Stack Java Development with Spring Boot", Mode.ONLINE,
+				Category.BE.getCategory(), CourseLevel.INTERMEDIATE, "Rajesh Kumar", new HashSet<>()));
+		courses.add(new Course(null, "Advanced React and TypeScript", Mode.HYBRID, Category.FE.getCategory(),
+				CourseLevel.ADVANCED, "Priya Sharma", new HashSet<>()));
+		courses.add(new Course(null, "Microservices Architecture with Spring Cloud", Mode.ONLINE,
+				Category.BE.getCategory(), CourseLevel.ADVANCED, "Amit Patel", new HashSet<>()));
+		courses.add(new Course(null, "AWS Cloud Practitioner Essentials", Mode.ONLINE, Category.CLOUD.getCategory(),
+				CourseLevel.BEGINNER, "Sneha Reddy", new HashSet<>()));
+		courses.add(new Course(null, "Data Structures and Algorithms in Python", Mode.OFFLINE,
+				Category.PROGRAMMING.getCategory(), CourseLevel.INTERMEDIATE, "Vikram Singh", new HashSet<>()));
+		courses.add(new Course(null, "DevOps with Docker and Kubernetes", Mode.ONLINE, Category.DEVOPS.getCategory(),
+				CourseLevel.ADVANCED, "Anita Desai", new HashSet<>()));
+		courses.add(new Course(null, "Angular for Enterprise Applications", Mode.HYBRID, Category.FE.getCategory(),
 				CourseLevel.INTERMEDIATE, "Karthik Iyer", new HashSet<>()));
-		courses.add(new Course(null, "Machine Learning Fundamentals", Mode.ONLINE, "AI/ML", CourseLevel.BEGINNER,
-				"Deepak Verma", new HashSet<>()));
-		courses.add(new Course(null, "RESTful API Design and Development", Mode.ONLINE, "Backend",
+		courses.add(new Course(null, "Machine Learning Fundamentals", Mode.ONLINE, Category.AIML.getCategory(),
+				CourseLevel.BEGINNER, "Deepak Verma", new HashSet<>()));
+		courses.add(new Course(null, "RESTful API Design and Development", Mode.ONLINE, Category.BE.getCategory(),
 				CourseLevel.INTERMEDIATE, "Lakshmi Nair", new HashSet<>()));
-		courses.add(new Course(null, "Agile and Scrum for Software Teams", Mode.OFFLINE, "Management",
-				CourseLevel.BEGINNER, "Ravi Menon", new HashSet<>()));
+		courses.add(new Course(null, "Agile and Scrum for Software Teams", Mode.OFFLINE,
+				Category.MANAGEMENT.getCategory(), CourseLevel.BEGINNER, "Ravi Menon", new HashSet<>()));
 
 		courseRepository.saveAll(courses);
 		System.out.println("DataInitializer: Saved 10 courses.");
@@ -116,6 +117,7 @@ public class DataInitializer {
 		// Then save all employees.
 		employeeRepository.saveAll(employees);
 		System.out.println("DataInitializer: Saved 20 employees (16 with courses, 4 without courses).");
+
 	}
 
 }

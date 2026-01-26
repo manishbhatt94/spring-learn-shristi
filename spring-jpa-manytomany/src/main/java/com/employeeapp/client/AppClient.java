@@ -42,12 +42,21 @@ public class AppClient {
 		System.out.println("Added course: " + courseDto1 + "\n");
 
 		CourseDto courseDto2 = courseService.addCourse(new CourseDto(null, "Gen AI - A bird's eye view", Mode.ONLINE,
-				Category.ML.getCategory(), CourseLevel.BEGINNER, "Gaurav Sen"));
+				Category.AIML.getCategory(), CourseLevel.BEGINNER, "Gaurav Sen"));
 		System.out.println("Added course: " + courseDto2 + "\n");
 
 		CourseDto courseDto3 = courseService.addCourse(new CourseDto(null, "Architecting React Apps", Mode.OFFLINE,
 				Category.FE.getCategory(), CourseLevel.INTERMEDIATE, "Dan Abramov"));
 		System.out.println("Added course: " + courseDto3 + "\n");
+
+		CourseDto courseDto4 = courseService.addCourse(new CourseDto(null, "Java Testing with JUnit6 & Mockito",
+				Mode.OFFLINE, Category.TESTING.getCategory(), CourseLevel.INTERMEDIATE, "Navin Reddy"));
+		System.out.println("Added course: " + courseDto4 + "\n");
+
+		CourseDto courseDto5 = courseService
+				.addCourse(new CourseDto(null, "Playwright Novice Guidebook - E2E Tests for WebApps", Mode.ONLINE,
+						Category.TESTING.getCategory(), CourseLevel.BEGINNER, "Satya Nadella"));
+		System.out.println("Added course: " + courseDto5 + "\n");
 
 		// for working with employee
 

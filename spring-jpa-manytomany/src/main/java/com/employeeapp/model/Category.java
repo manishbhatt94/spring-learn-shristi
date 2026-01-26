@@ -7,7 +7,8 @@ import lombok.Getter;
 @Getter
 public enum Category {
 
-	FE("FRONTEND"), BE("BACKEND"), ML("MACHINE LEARNING"), TESTING("TESTING"), DEVOPS("DEVOPS");
+	FE("Frontend"), BE("Backend"), AIML("AI/ML"), TESTING("Testing"), DEVOPS("Devops"), CLOUD("Cloud"),
+	PROGRAMMING("Programming"), MANAGEMENT("Management");
 
 	private String category;
 
