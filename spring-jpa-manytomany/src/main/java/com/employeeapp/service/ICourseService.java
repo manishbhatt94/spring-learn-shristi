@@ -2,7 +2,9 @@ package com.employeeapp.service;
 
 import java.util.List;
 
+import com.employeeapp.model.Category;
 import com.employeeapp.model.CourseDto;
+import com.employeeapp.model.Mode;
 
 public interface ICourseService {
 
@@ -17,12 +19,12 @@ public interface ICourseService {
 	List<CourseDto> getByEmployeeId(int empId);
 
 	// list of online courses
-	List<CourseDto> getByMode(String mode);
+	List<CourseDto> getByMode(Mode mode);
 
 	// list of front-end online courses
-	List<CourseDto> getByModeCategory(String mode, String category);
+	List<CourseDto> getByModeCategory(Mode mode, Category category);
 
 	// list of online courses by a particular department employees
-	List<CourseDto> getByDepartmentMode(String department, String mode);
+	List<CourseDto> getByDepartmentMode(String department, Mode mode);
 
 }

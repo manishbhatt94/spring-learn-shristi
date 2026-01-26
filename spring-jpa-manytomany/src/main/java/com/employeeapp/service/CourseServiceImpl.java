@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.employeeapp.config.EmployeeMapper;
+import com.employeeapp.model.Category;
 import com.employeeapp.model.Course;
 import com.employeeapp.model.CourseDto;
+import com.employeeapp.model.Mode;
 import com.employeeapp.repository.ICourseRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -48,19 +50,19 @@ public class CourseServiceImpl implements ICourseService {
 	}
 
 	@Override
-	public List<CourseDto> getByMode(String mode) {
+	public List<CourseDto> getByMode(Mode mode) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CourseDto> getByModeCategory(String mode, String category) {
+	public List<CourseDto> getByModeCategory(Mode mode, Category category) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<CourseDto> getByDepartmentMode(String department, String mode) {
+	public List<CourseDto> getByDepartmentMode(String department, Mode mode) {
 		// TODO Auto-generated method stub
 		return null;
 	}
