@@ -47,6 +47,10 @@ public class EmployeeMapper {
 		return mapper.map(course, CourseDto.class);
 	}
 
+	public List<CourseDto> convertToCourseDto(List<Course> courses) {
+		return courses.stream().map(this::convertToCourseDto).toList();
+	}
+
 	public Course convertToCourseEntity(CourseDto courseDto) {
 		return mapper.map(courseDto, Course.class);
 	}
