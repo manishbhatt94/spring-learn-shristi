@@ -28,10 +28,14 @@ public class AppClient {
 	@Autowired
 	private EmployeeDemo employeeDemo;
 
+	@Autowired
+	private CourseDemo courseDemo;
+
 	public void run() {
 
 		// addCoursesAndEmployees();
 		employeeDemo.run();
+		courseDemo.run();
 
 	}
 
