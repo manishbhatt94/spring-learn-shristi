@@ -48,4 +48,8 @@ public interface IBookService {
 
 	List<BookDto> getAllBooksInDescIdOrder();
 
+	// ======= Sorting =======
+
+	List<BookDto> getSortedBooks();
+
 }

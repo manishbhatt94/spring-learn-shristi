@@ -84,6 +84,11 @@ public class SpringBookappJpaApplication implements CommandLineRunner {
 
 		System.out.println("\n--------- All Books In Desc Id Order [getAllBooksInDescIdOrder] ------------");
 		bookService.getAllBooksInDescIdOrder().forEach(System.out::println);
+		System.out.println();// getSortedBooks
+
+		System.out.println("\n--------- All Books Sorted In Specific Order [getSortedBooks] ------------");
+		System.out.println(" > ORDER BY category ASC, cost DESC");
+		bookService.getSortedBooks().forEach(System.out::println);
 		System.out.println();
 
 	}

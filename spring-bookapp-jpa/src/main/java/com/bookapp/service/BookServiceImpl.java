@@ -3,6 +3,8 @@ package com.bookapp.service;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import com.bookapp.exception.BookNotFoundException;
@@ -114,6 +116,13 @@ public class BookServiceImpl implements IBookService {
 	@Override
 	public List<BookDto> getAllBooksInDescIdOrder() {
 		List<Book> books = repository.findAllBooksInDescIdOrder(); // using named native query
+		return toBookDtoList(books);
+	}
+
+	@Override
+	public List<BookDto> getSortedBooks() {
+		Sort sort = Sort.by(Order.asc("category"), Order.desc("price"));
+		List<Book> books = repository.findAll(sort);
 		return toBookDtoList(books);
 	}
 
