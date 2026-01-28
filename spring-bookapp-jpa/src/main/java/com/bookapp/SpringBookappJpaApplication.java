@@ -24,27 +24,50 @@ public class SpringBookappJpaApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		// populateData();
+
+		String author = null;
+		String category = null;
+		String title = null;
+		double price = 0.0;
+
+		System.out.println("\n--------- All Books [getAll] ------------");
 		bookService.getAll().forEach(System.out::println);
 		System.out.println();
 
-		System.out.println("--------- By Author ------------");
-		bookService.getByAuthor("George Orwell").forEach(System.out::println);
+		System.out.println("\n--------- By Author [getByAuthor] ------------");
+		author = "George Orwell";
+		System.out.println(" > author = " + author);
+		bookService.getByAuthor(author).forEach(System.out::println);
 		System.out.println();
 
-		System.out.println("--------- By Category ------------");
-		bookService.getByCategory("Thriller").forEach(System.out::println);
+		System.out.println("\n--------- By Category [getByCategory] ------------");
+		category = "Thriller";
+		System.out.println(" > category = " + category);
+		bookService.getByCategory(category).forEach(System.out::println);
 		System.out.println();
 
-		System.out.println("--------- By Category & Upto Price ------------");
-		bookService.getByCategoryUptoPrice("Fantasy", 750).forEach(System.out::println);
+		System.out.println("\n--------- By Category & Upto Price [getByCategoryUptoPrice] ------------");
+		category = "Fantasy";
+		price = 750.0;
+		System.out.println(" > category = " + category);
+		System.out.println(" > price = " + price);
+		bookService.getByCategoryUptoPrice(category, price).forEach(System.out::println);
 		System.out.println();
 
-		System.out.println("--------- By Author & Upto Price ------------");
-		bookService.getByAuthorPrice("Dan Brown", 600).forEach(System.out::println);
+		System.out.println("\n--------- By Author & Upto Price [getByAuthorPrice] ------------");
+		author = "Dan Brown";
+		price = 600.0;
+		System.out.println(" > author = " + author);
+		System.out.println(" > price = " + price);
+		bookService.getByAuthorPrice(author, price).forEach(System.out::println);
 		System.out.println();
 
-		System.out.println("--------- By Category & Title contains ------------");
-		bookService.getByCategoryTitleContains("Thriller", "Girl").forEach(System.out::println);
+		System.out.println("\n--------- By Category & Title contains [getByCategoryTitleContains] ------------");
+		category = "Thriller";
+		title = "Girl";
+		System.out.println(" > category = " + category);
+		System.out.println(" > title = " + title);
+		bookService.getByCategoryTitleContains(category, title).forEach(System.out::println);
 		System.out.println();
 
 	}
