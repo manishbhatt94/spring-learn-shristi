@@ -29,6 +29,7 @@ public class SpringBookappJpaApplication implements CommandLineRunner {
 		String category = null;
 		String title = null;
 		double price = 0.0;
+		int affectedRows = 0;
 
 		System.out.println("\n--------- All Books [getAll] ------------");
 		bookService.getAll().forEach(System.out::println);
@@ -84,11 +85,27 @@ public class SpringBookappJpaApplication implements CommandLineRunner {
 
 		System.out.println("\n--------- All Books In Desc Id Order [getAllBooksInDescIdOrder] ------------");
 		bookService.getAllBooksInDescIdOrder().forEach(System.out::println);
-		System.out.println();// getSortedBooks
+		System.out.println();
 
 		System.out.println("\n--------- All Books Sorted In Specific Order [getSortedBooks] ------------");
 		System.out.println(" > ORDER BY category ASC, cost DESC");
 		bookService.getSortedBooks().forEach(System.out::println);
+		System.out.println();
+
+		System.out.println("\n--------- Update Book Price [updateBookPrice] ------------");
+		System.out.println(" > bookService.updateBookPrice(3, 649)");
+		System.out.println(" > bookId = " + 3);
+		System.out.println(" > newPrice = " + 649);
+		affectedRows = bookService.updateBookPrice(3, 649);
+		System.out.println("Number of rows affected: " + affectedRows);
+		System.out.println();
+
+		System.out.println("\n--------- Set Discount [setDiscountForBooksCostingAtleast] ------------");
+		System.out.println(" > bookService.setDiscountForBooksCostingAtleast(5, 750)");
+		System.out.println(" > discount % = " + 5);
+		System.out.println(" > atleastPrice = " + 750);
+		affectedRows = bookService.setDiscountForBooksCostingAtleast(5, 750);
+		System.out.println("Number of rows affected: " + affectedRows);
 		System.out.println();
 
 	}

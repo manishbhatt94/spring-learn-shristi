@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bookapp.exception.BookNotFoundException;
 import com.bookapp.model.Book;
@@ -124,6 +125,21 @@ public class BookServiceImpl implements IBookService {
 		Sort sort = Sort.by(Order.asc("category"), Order.desc("price"));
 		List<Book> books = repository.findAll(sort);
 		return toBookDtoList(books);
+	}
+
+	@Override
+	@Transactional
+	public int updateBookPrice(int bookId, double price) {
+		int updatedRows = repository.updateBookPrice(bookId, price);
+		return updatedRows;
+	}
+
+	@Override
+	@Transactional
+	public int setDiscountForBooksCostingAtleast(double discount, double atleastPrice) {
+		double discountedRatio = 1.0 - (discount / 100.0);
+		int updatedRows = repository.setDiscountForBooksWithPriceAtleast(discountedRatio, atleastPrice);
+		return updatedRows;
 	}
 
 	private Book toBookEntity(BookDto bookDto) {

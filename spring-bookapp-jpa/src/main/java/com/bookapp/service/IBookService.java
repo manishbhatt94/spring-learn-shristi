@@ -52,4 +52,10 @@ public interface IBookService {
 
 	List<BookDto> getSortedBooks();
 
+	// ======= Modifying Query =======
+
+	int updateBookPrice(int bookId, double price); // Using JPQL
+
+	int setDiscountForBooksCostingAtleast(double discount, double atleastPrice); // Using native query
+
 }

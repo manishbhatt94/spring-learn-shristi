@@ -3,6 +3,7 @@ package com.bookapp.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -43,5 +44,17 @@ public interface IBookRepository extends JpaRepository<Book, Integer> {
 
 	@Query(name = "fetchAllInDescIdOrder", nativeQuery = true)
 	List<Book> findAllBooksInDescIdOrder();
+
+	// ======= Modifying Query =======
+
+	// Using JPQL's UPDATE query
+	@Modifying
+	@Query(value = "update Book b set b.price = ?2 where b.bookId = ?1")
+	int updateBookPrice(int bookId, double price);
+
+	// Using Native (MySQL's) UPDATE query
+	@Modifying
+	@Query(value = "update book set cost = ceil(?1 * cost) where cost >= ?2", nativeQuery = true)
+	int setDiscountForBooksWithPriceAtleast(double discountedRatio, double minPrice);
 
 }
