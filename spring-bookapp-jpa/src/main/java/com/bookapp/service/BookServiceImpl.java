@@ -21,7 +21,7 @@ public class BookServiceImpl implements IBookService {
 
 	@Override
 	public void addBook(BookDto bookDto) {
-		Book book = mapper.map(bookDto, Book.class);
+		Book book = toBookEntity(bookDto);
 		// Cases handled by .save(<entity>) method:
 		// -> If the entity does not have ID, then
 		// ---- auto-generate the ID,
@@ -39,7 +39,7 @@ public class BookServiceImpl implements IBookService {
 		// corresponding to which, a record exists in the table.
 		// If that is so, the record will get updated.
 		// If not, then a new record will get created.
-		Book book = mapper.map(bookDto, Book.class);
+		Book book = toBookEntity(bookDto);
 		repository.save(book);
 	}
 
@@ -57,12 +57,12 @@ public class BookServiceImpl implements IBookService {
 	@Override
 	public List<BookDto> getAll() {
 		List<Book> books = repository.findAll(); // using derived query
-		return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
+		return toBookDtoList(books);
 	}
 
 	@Override
 	public BookDto getById(int bookId) throws BookNotFoundException {
-		return repository.findById(bookId).map(book -> mapper.map(book, BookDto.class))
+		return repository.findById(bookId).map(this::toBookDto)
 				.orElseThrow(() -> new BookNotFoundException("Invalid ID: " + bookId));
 	}
 
@@ -102,7 +102,7 @@ public class BookServiceImpl implements IBookService {
 	@Override
 	public List<BookDto> getByPriceAboveAvg() {
 		List<Book> books = repository.findAboveAvgPrice(); // using native query
-		return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
+		return toBookDtoList(books);
 	}
 
 	@Override
@@ -114,14 +114,26 @@ public class BookServiceImpl implements IBookService {
 	@Override
 	public List<BookDto> getAllBooksInDescIdOrder() {
 		List<Book> books = repository.findAllBooksInDescIdOrder(); // using named native query
-		return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
+		return toBookDtoList(books);
+	}
+
+	private Book toBookEntity(BookDto bookDto) {
+		return mapper.map(bookDto, Book.class);
+	}
+
+	private BookDto toBookDto(Book book) {
+		return mapper.map(book, BookDto.class);
+	}
+
+	private List<BookDto> toBookDtoList(List<Book> books) {
+		return books.stream().map(this::toBookDto).toList();
 	}
 
 	private List<BookDto> toBookDtoList(List<Book> books, String notFoundMessage) throws BookNotFoundException {
 		if (books.isEmpty()) {
 			throw new BookNotFoundException(notFoundMessage);
 		}
-		return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
+		return toBookDtoList(books);
 	}
 
 }
