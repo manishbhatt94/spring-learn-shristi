@@ -23,33 +23,31 @@ public class ProductServiceImpl implements IProductService {
 
 	@Override
 	public void addProduct(ProductDto productDto) {
-		Product product = productMapper.convertToEntity(productDto);
+		Product product = productMapper.convertToProductEntity(productDto);
 		productRepository.save(product);
 	}
 
 	@Override
 	public void updateProduct(ProductDto productDto) {
-		// TODO Auto-generated method stub
-
+		Product product = productMapper.convertToProductEntity(productDto);
+		productRepository.save(product);
 	}
 
 	@Override
 	public void deleteProduct(int productId) {
-		// TODO Auto-generated method stub
-
+		productRepository.deleteById(productId);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public List<ProductDto> getAll() {
-		List<Product> products = productRepository.findAll();
-		return products.stream().map(productMapper::convertToDto).toList();
+		return productRepository.findAll().stream().map(productMapper::convertToProductDto).toList();
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public ProductDto getById(int productId) throws ProductNotFoundException {
-		return productRepository.findById(productId).map(productMapper::convertToDto)
+		return productRepository.findById(productId).map(productMapper::convertToProductDto)
 				.orElseThrow(() -> new ProductNotFoundException("Product with given ID not found"));
 	}
 

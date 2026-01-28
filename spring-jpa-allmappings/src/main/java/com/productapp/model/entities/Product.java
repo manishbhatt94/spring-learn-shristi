@@ -3,12 +3,17 @@ package com.productapp.model.entities;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -49,5 +54,21 @@ public class Product {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "product_id") // to add the foreign key to the many side
 	private List<Offer> offers;
+
+	@ManyToMany
+	@JoinTable(name = "product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private List<Category> categories;
+
+	@ManyToOne
+	@JoinColumn(name = "brand_id")
+	private Brand brand;
+
+	@ElementCollection
+	@CollectionTable(name = "product_delivery", joinColumns = @JoinColumn(name = "product_id"))
+	private List<String> deliveryTypes; // PRIME, STANDARD, AMAZON
+
+	@ElementCollection
+	@CollectionTable(name = "product_payment", joinColumns = @JoinColumn(name = "product_id"))
+	private List<String> paymentModes; // CARD, UPI, NB, COD
 
 }

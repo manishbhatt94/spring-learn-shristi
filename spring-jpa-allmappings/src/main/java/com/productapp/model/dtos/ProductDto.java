@@ -27,4 +27,12 @@ public class ProductDto {
 
 	private List<OfferDto> offers;
 
+	private List<CategoryDto> categories;
+
+	private BrandDto brand;
+
+	private List<String> deliveryTypes; // PRIME, STANDARD, AMAZON
+
+	private List<String> paymentModes; // CARD, UPI, NB, COD
+
 }
