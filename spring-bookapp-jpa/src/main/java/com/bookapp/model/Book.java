@@ -6,6 +6,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedNativeQuery;
+import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +22,10 @@ import lombok.ToString;
 @ToString
 @Entity
 // @Table(name = "BookDetails") // table name will be "book_details"
-@NamedQuery(name = "fetchByCategoryAuthor", query = "from Book b where b.category = ?1 and b.author = ?2")
+@NamedQuery(name = "fetchByCategoryAuthor", query = "from Book b where b.category=?1 and b.author=?2")
+@NamedQueries(value = { @NamedQuery(name = "findByAuth", query = "from Book b where b.author=?1"),
+		@NamedQuery(name = "findByCat", query = "from Book b where b.category=?1") })
+@NamedNativeQuery(name = "fetchAllInDescIdOrder", query = "select * from book order by book_id desc limit 5", resultClass = Book.class)
 public class Book {
 
 	@Id

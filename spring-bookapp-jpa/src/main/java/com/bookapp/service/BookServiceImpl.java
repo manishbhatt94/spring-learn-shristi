@@ -1,7 +1,6 @@
 package com.bookapp.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -57,18 +56,14 @@ public class BookServiceImpl implements IBookService {
 
 	@Override
 	public List<BookDto> getAll() {
-		List<Book> books = repository.findAll();
+		List<Book> books = repository.findAll(); // using derived query
 		return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
 	}
 
 	@Override
 	public BookDto getById(int bookId) throws BookNotFoundException {
-		Optional<Book> bookOpt = repository.findById(bookId);
-		if (bookOpt.isPresent()) {
-			Book book = bookOpt.get();
-			return mapper.map(book, BookDto.class);
-		}
-		throw new BookNotFoundException("Invalid ID: " + bookId);
+		return repository.findById(bookId).map(book -> mapper.map(book, BookDto.class))
+				.orElseThrow(() -> new BookNotFoundException("Invalid ID: " + bookId));
 	}
 
 	@Override
@@ -102,6 +97,24 @@ public class BookServiceImpl implements IBookService {
 		List<Book> books = repository.findByCategoryTitleContains(category, title);
 		return toBookDtoList(books,
 				String.format("Books by category: %s & title containing: ₹%s not found.", category, title));
+	}
+
+	@Override
+	public List<BookDto> getByPriceAboveAvg() {
+		List<Book> books = repository.findAboveAvgPrice(); // using native query
+		return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
+	}
+
+	@Override
+	public List<BookDto> getByCategoryAuthor(String category, String author) {
+		List<Book> books = repository.readByCatAuth(category, author); // using named query
+		return toBookDtoList(books, String.format("Books by category: %s & author: %s not found.", category, author));
+	}
+
+	@Override
+	public List<BookDto> getAllBooksInDescIdOrder() {
+		List<Book> books = repository.findAllBooksInDescIdOrder(); // using named native query
+		return books.stream().map(book -> mapper.map(book, BookDto.class)).toList();
 	}
 
 	private List<BookDto> toBookDtoList(List<Book> books, String notFoundMessage) throws BookNotFoundException {

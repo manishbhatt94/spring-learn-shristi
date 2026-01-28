@@ -11,7 +11,7 @@ import com.bookapp.model.Book;
 @Repository
 public interface IBookRepository extends JpaRepository<Book, Integer> {
 
-	// Derived Queries
+	// ======= Derived Queries =======
 	// readBy, getBy, queryBy, findBy
 
 	List<Book> findByAuthor(String author);
@@ -20,7 +20,7 @@ public interface IBookRepository extends JpaRepository<Book, Integer> {
 
 	List<Book> queryByCategoryAndPriceLessThanEqual(String category, Double price);
 
-	// Custom Queries
+	// ======= Custom Queries =======
 
 	// SELECT * FROM book WHERE author = 'Kathy' AND price < 1000;
 	@Query("from Book b where b.author = ?1 and b.price < ?2")
@@ -29,9 +29,19 @@ public interface IBookRepository extends JpaRepository<Book, Integer> {
 	@Query("from Book b where b.category = ?1 and title like %?2%")
 	List<Book> findByCategoryTitleContains(String category, String title);
 
-	// Named Queries
+	// ======= Native Query =======
+
+	@Query(value = "select * from book where cost > (select avg(b.cost) from book b)", nativeQuery = true)
+	List<Book> findAboveAvgPrice();
+
+	// ======= Named Queries =======
 
 	@Query(name = "fetchByCategoryAuthor")
 	List<Book> readByCatAuth(String category, String author);
+
+	// ======= Named Native Query =======
+
+	@Query(name = "fetchAllInDescIdOrder", nativeQuery = true)
+	List<Book> findAllBooksInDescIdOrder();
 
 }

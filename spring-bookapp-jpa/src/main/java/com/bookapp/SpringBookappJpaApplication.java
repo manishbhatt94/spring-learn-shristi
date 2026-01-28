@@ -70,6 +70,22 @@ public class SpringBookappJpaApplication implements CommandLineRunner {
 		bookService.getByCategoryTitleContains(category, title).forEach(System.out::println);
 		System.out.println();
 
+		System.out.println("\n--------- By Price Above Avg [getByPriceAboveAvg] ------------");
+		bookService.getByPriceAboveAvg().forEach(System.out::println);
+		System.out.println();
+
+		System.out.println("\n--------- By Category & Author [getByCategoryAuthor] ------------");
+		category = "Satire";
+		author = "George Orwell";
+		System.out.println(" > category = " + category);
+		System.out.println(" > author = " + author);
+		bookService.getByCategoryAuthor(category, author).forEach(System.out::println);
+		System.out.println();
+
+		System.out.println("\n--------- All Books In Desc Id Order [getAllBooksInDescIdOrder] ------------");
+		bookService.getAllBooksInDescIdOrder().forEach(System.out::println);
+		System.out.println();
+
 	}
 
 	private void populateData() {
