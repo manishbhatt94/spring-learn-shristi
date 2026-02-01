@@ -89,6 +89,9 @@ local.properties
 # STS (Spring Tool Suite)
 .springBeans
 
+# Ignore the Eclipse/STS Server configuration folder
+/Servers/
+
 # Code Recommenders
 .recommenders/
 
