@@ -1,0 +1,14 @@
+spring:
+    application:
+        name: spring-restapi-productapp
+    datasource:
+        url: jdbc:mysql://localhost:3306/jfsseptkart?rewriteBatchedStatements=true
+        username: root
+        password: manish
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+
+server:
+    port: 8081
