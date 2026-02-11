@@ -47,11 +47,11 @@ public class Product {
 	private double rating;
 
 	// child entity is persisted before the parent entity
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
 	@JoinColumn(name = "feature_id") // to give a different column name
 	private Feature feature;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
 	@JoinColumn(name = "product_id") // to add the foreign key to the many side
 	private List<Offer> offers;
 
