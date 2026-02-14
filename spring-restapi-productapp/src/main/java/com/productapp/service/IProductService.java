@@ -16,6 +16,8 @@ public interface IProductService {
 
 	void updateProduct(ProductDto productDto);
 
+	void updateProductVerbose(ProductDto productDto);
+
 	void deleteProduct(int productId);
 
 	ProductDto getById(int productId) throws ProductNotFoundException;

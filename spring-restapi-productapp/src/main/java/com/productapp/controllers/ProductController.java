@@ -43,7 +43,7 @@ public class ProductController {
 	// PUT http://localhost:8081/product-api/v1/products
 	@PutMapping("/products")
 	ResponseEntity<Void> updateProduct(@RequestBody ProductDto productDto) {
-		productService.updateProduct(productDto);
+		productService.updateProductVerbose(productDto);
 		return ResponseEntity.accepted().build();
 	}
 
