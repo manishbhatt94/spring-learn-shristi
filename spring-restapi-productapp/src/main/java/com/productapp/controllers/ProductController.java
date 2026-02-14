@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.productapp.exception.ProductNotFoundException;
 import com.productapp.model.dtos.ProductDto;
+import com.productapp.model.enums.Delivery;
+import com.productapp.model.enums.OfferType;
+import com.productapp.model.enums.Payment;
 import com.productapp.service.IProductService;
 
 import lombok.RequiredArgsConstructor;
@@ -78,4 +81,25 @@ public class ProductController {
 		List<ProductDto> products = productService.getByCategory(categoryname);
 		return ResponseEntity.ok(products);
 	}
+
+	ResponseEntity<List<ProductDto>> getByBrandAndPayType(String brand, Payment paymentType) {
+		return null;
+	}
+
+	ResponseEntity<List<ProductDto>> getByColor(String color) {
+		return null;
+	}
+
+	ResponseEntity<List<ProductDto>> getByCategoryAndDelivery(String category, Delivery delivery) {
+		return null;
+	}
+
+	ResponseEntity<List<ProductDto>> getByNameContains(String name) {
+		return null;
+	}
+
+	ResponseEntity<List<ProductDto>> getByNameAndOfferType(String name, OfferType offerType) {
+		return null;
+	}
+
 }

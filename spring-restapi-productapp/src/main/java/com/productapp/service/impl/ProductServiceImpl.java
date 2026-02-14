@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.productapp.exception.ProductNotFoundException;
 import com.productapp.model.dtos.ProductDto;
 import com.productapp.model.entities.Product;
+import com.productapp.model.enums.Delivery;
+import com.productapp.model.enums.OfferType;
+import com.productapp.model.enums.Payment;
 import com.productapp.repository.IProductRepository;
 import com.productapp.service.IProductService;
 import com.productapp.util.ProductMapper;
@@ -57,6 +60,37 @@ public class ProductServiceImpl implements IProductService {
 		List<Product> products = productRepository.findByCategory(category);
 		return toDtoListIfEmptyThrow(products,
 				() -> new ProductNotFoundException("Products with category: '" + category + "' not found"));
+	}
+
+	@Override
+	public List<ProductDto> getByBrandAndPayType(String brand, Payment paymentType) throws ProductNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ProductDto> getByColor(String color) throws ProductNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ProductDto> getByCategoryAndDelivery(String category, Delivery delivery)
+			throws ProductNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ProductDto> getByNameContains(String name) throws ProductNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ProductDto> getByNameAndOfferType(String name, OfferType offerType) throws ProductNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private <X extends RuntimeException> List<ProductDto> toDtoListIfEmptyThrow(List<Product> products,
