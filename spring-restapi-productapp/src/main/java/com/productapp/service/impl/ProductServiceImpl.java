@@ -1,6 +1,7 @@
 package com.productapp.service.impl;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,6 +50,21 @@ public class ProductServiceImpl implements IProductService {
 	public ProductDto getById(int productId) throws ProductNotFoundException {
 		return productRepository.findById(productId).map(productMapper::convertToProductDto)
 				.orElseThrow(() -> new ProductNotFoundException("Product with given ID not found"));
+	}
+
+	@Override
+	public List<ProductDto> getByCategory(String category) throws ProductNotFoundException {
+		List<Product> products = productRepository.findByCategory(category);
+		return toDtoListIfEmptyThrow(products,
+				() -> new ProductNotFoundException("Products with category: '" + category + "' not found"));
+	}
+
+	private <X extends RuntimeException> List<ProductDto> toDtoListIfEmptyThrow(List<Product> products,
+			Supplier<? extends X> exceptionSupplier) throws X {
+		if (products.isEmpty()) {
+			throw exceptionSupplier.get();
+		}
+		return products.stream().map(productMapper::convertToProductDto).toList();
 	}
 
 }

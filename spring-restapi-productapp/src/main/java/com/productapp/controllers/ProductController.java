@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.productapp.exception.ProductNotFoundException;
@@ -70,4 +71,11 @@ public class ProductController {
 		return ResponseEntity.status(HttpStatusCode.valueOf(200)).headers(headers).body(products);
 	}
 
+	// GET
+	// http://localhost:8081/product-api/v1/products/category?categoryname=sports
+	@GetMapping("/products/category")
+	ResponseEntity<List<ProductDto>> getByCategory(@RequestParam String categoryname) {
+		List<ProductDto> products = productService.getByCategory(categoryname);
+		return ResponseEntity.ok(products);
+	}
 }

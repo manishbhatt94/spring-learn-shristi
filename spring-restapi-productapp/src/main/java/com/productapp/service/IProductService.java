@@ -7,7 +7,7 @@ import com.productapp.model.dtos.ProductDto;
 
 public interface IProductService {
 
-	// CRUD operation
+	// CRUD operations:
 
 	void addProduct(ProductDto productDto);
 
@@ -19,4 +19,7 @@ public interface IProductService {
 
 	List<ProductDto> getAll();
 
+	// Other filtering:
+
+	List<ProductDto> getByCategory(String category) throws ProductNotFoundException;
 }
