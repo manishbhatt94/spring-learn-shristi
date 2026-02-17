@@ -30,15 +30,15 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class ApiUser implements UserDetails {
+public class JwtUser implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator = "user_gen", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "user_gen", sequenceName = "user_seq", initialValue = 20, allocationSize = 1)
+	@GeneratedValue(generator = "jwtuser_gen", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "jwtuser_gen", sequenceName = "jwtuser_seq", initialValue = 20, allocationSize = 1)
 	@EqualsAndHashCode.Include
-	private Integer apiuserId;
+	private Integer jwtuserId;
 
 	@Column(length = 120)
 	private String username;
@@ -46,7 +46,7 @@ public class ApiUser implements UserDetails {
 	private String password;
 
 	@ElementCollection
-	@CollectionTable(name = "apiuser_roles", joinColumns = @JoinColumn(name = "apiuser_id"))
+	@CollectionTable(name = "jwtuser_roles", joinColumns = @JoinColumn(name = "jwtuser_id"))
 	private Set<String> roles;
 
 	@Override

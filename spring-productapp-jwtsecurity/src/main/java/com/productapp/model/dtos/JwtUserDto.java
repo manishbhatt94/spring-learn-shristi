@@ -15,10 +15,10 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class ApiUserDto {
+public class JwtUserDto {
 
 	@EqualsAndHashCode.Include
-	private Integer apiuserId;
+	private Integer jwtuserId;
 
 	private String username;
 

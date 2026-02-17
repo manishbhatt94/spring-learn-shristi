@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.productapp.model.dtos.ApiUserDto;
-import com.productapp.model.entities.ApiUser;
-import com.productapp.service.impl.ApiUserServiceImpl;
+import com.productapp.model.dtos.JwtUserDto;
+import com.productapp.model.entities.JwtUser;
+import com.productapp.service.impl.JwtUserServiceImpl;
 import com.productapp.util.UserMapper;
 
 import lombok.AccessLevel;
@@ -19,25 +19,25 @@ import lombok.experimental.FieldDefaults;
 @RestController
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
-public class ApiUserController {
+public class JwtUserController {
 
 	// Auto-wire these using RequiredArgsConstructor
-	ApiUserServiceImpl apiUserService; // Imp: Here we auto-wire the implementation class
+	JwtUserServiceImpl jwtUserService; // Imp: Here we auto-wire the implementation class
 	PasswordEncoder encoder;
 	UserMapper userMapper;
 
 	@PostMapping("/register")
-	ResponseEntity<Void> createUser(@RequestBody ApiUserDto apiUserDto) {
+	ResponseEntity<Void> createUser(@RequestBody JwtUserDto jwtUserDto) {
 		// Get the password and encode it
-		String password = apiUserDto.getPassword();
+		String password = jwtUserDto.getPassword();
 		// Encode password
 		String encodedPassword = encoder.encode(password);
 		// Set the new password to the userDto object
-		apiUserDto.setPassword(encodedPassword);
+		jwtUserDto.setPassword(encodedPassword);
 		// Use ModelMapper to convert DTO to entity
-		ApiUser apiUser = userMapper.convertToEntity(apiUserDto);
+		JwtUser jwtUser = userMapper.convertToEntity(jwtUserDto);
 		// Call the method of service
-		apiUserService.createUser(apiUser);
+		jwtUserService.createUser(jwtUser);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 

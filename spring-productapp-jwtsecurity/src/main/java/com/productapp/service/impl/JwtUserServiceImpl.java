@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
 
-import com.productapp.model.entities.ApiUser;
-import com.productapp.repository.IApiUserRepository;
+import com.productapp.model.entities.JwtUser;
+import com.productapp.repository.IJwtUserRepository;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -16,17 +16,17 @@ import lombok.experimental.FieldDefaults;
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class ApiUserServiceImpl implements UserDetailsManager {
+public class JwtUserServiceImpl implements UserDetailsManager {
 
-	IApiUserRepository userRepository;
+	IJwtUserRepository userRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		ApiUser apiUser = userRepository.findByUsername(username)
+		JwtUser jwtUser = userRepository.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("Invalid username"));
-		// System.out.println("[loadUserByUsername] apiUser: " + apiUser);
+		// System.out.println("[loadUserByUsername] jwtUser: " + jwtUser);
 		// Create a UserDetails object manually
-		UserDetails userDetails = new User(apiUser.getUsername(), apiUser.getPassword(), apiUser.getAuthorities());
+		UserDetails userDetails = new User(jwtUser.getUsername(), jwtUser.getPassword(), jwtUser.getAuthorities());
 		// System.out.println("[loadUserByUsername] userDetails: " + userDetails);
 		return userDetails;
 	}
@@ -35,9 +35,9 @@ public class ApiUserServiceImpl implements UserDetailsManager {
 	public void createUser(UserDetails user) {
 		// We need ApiUser object. But, what is here in method parameter, is an
 		// UserDetails object.
-		ApiUser apiUser = (ApiUser) user;
+		JwtUser jwtUser = (JwtUser) user;
 		// Pass the class that is annotated with @Entity
-		userRepository.save(apiUser);
+		userRepository.save(jwtUser);
 	}
 
 	@Override
