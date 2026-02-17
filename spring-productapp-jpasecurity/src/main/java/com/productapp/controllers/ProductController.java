@@ -33,22 +33,22 @@ public class ProductController {
 
 	private final IProductService productService;
 
-	// POST http://localhost:8081/product-api/v1/products
-	@PostMapping("/products")
+	// POST http://localhost:8081/product-api/v1/admin/products
+	@PostMapping("/admin/products")
 	ResponseEntity<Void> addProduct(@RequestBody ProductDto productDto) {
 		productService.addProduct(productDto);
 		return ResponseEntity.status(HttpStatus.CREATED.value()).build();
 	}
 
-	// PUT http://localhost:8081/product-api/v1/products
-	@PutMapping("/products")
+	// PUT http://localhost:8081/product-api/v1/admin/products
+	@PutMapping("/admin/products")
 	ResponseEntity<Void> updateProduct(@RequestBody ProductDto productDto) {
 		productService.updateProductVerbose(productDto);
 		return ResponseEntity.accepted().build();
 	}
 
-	// DELETE http://localhost:8081/product-api/v1/products/productId/1
-	@DeleteMapping("/products/productId/{productId}")
+	// DELETE http://localhost:8081/product-api/v1/admin/products/productId/1
+	@DeleteMapping("/admin/products/productId/{productId}")
 	ResponseEntity<Void> deleteProduct(@PathVariable int productId) {
 		productService.deleteProduct(productId);
 		return ResponseEntity.ok().build();
