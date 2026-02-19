@@ -1,0 +1,9 @@
+{
+	"properties": [
+		{
+			"name": "jwt.secret",
+			"type": "java.lang.String",
+			"description": "Secret Key for signing & verifying JWT - Generate using https://jwtsecrets.com/ (Used secret length of 512 bits)"
+		}
+	]
+}
