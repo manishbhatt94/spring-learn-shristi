@@ -29,22 +29,22 @@ public class CategoryController {
 
 	private final ICategoryService categoryService;
 
-	// POST http://localhost:8081/product-api/v1/categories
-	@PostMapping("/categories")
+	// POST http://localhost:8081/product-api/v1/admin/categories
+	@PostMapping("/admin/categories")
 	ResponseEntity<Void> addCategory(@RequestBody CategoryDto categoryDto) {
 		categoryService.addCategory(categoryDto);
 		return ResponseEntity.status(HttpStatus.CREATED.value()).build();
 	}
 
-	// PUT http://localhost:8081/product-api/v1/categories
-	@PutMapping("/categories")
+	// PUT http://localhost:8081/product-api/v1/admin/categories
+	@PutMapping("/admin/categories")
 	ResponseEntity<Void> updateCategory(@RequestBody CategoryDto categoryDto) {
 		categoryService.updateCategory(categoryDto);
 		return ResponseEntity.accepted().build();
 	}
 
-	// DELETE http://localhost:8081/product-api/v1/categories/categoryId/1
-	@DeleteMapping("/categories/categoryId/{categoryId}")
+	// DELETE http://localhost:8081/product-api/v1/admin/categories/categoryId/1
+	@DeleteMapping("/admin/categories/categoryId/{categoryId}")
 	ResponseEntity<Void> deleteCategory(@PathVariable int categoryId) {
 		categoryService.deleteCategory(categoryId);
 		return ResponseEntity.ok().build();

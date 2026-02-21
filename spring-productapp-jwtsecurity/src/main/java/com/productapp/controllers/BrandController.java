@@ -29,22 +29,22 @@ public class BrandController {
 
 	private final IBrandService brandService;
 
-	// POST http://localhost:8081/product-api/v1/brands
-	@PostMapping("/brands")
+	// POST http://localhost:8081/product-api/v1/admin/brands
+	@PostMapping("/admin/brands")
 	ResponseEntity<Void> addBrand(@RequestBody BrandDto brandDto) {
 		brandService.addBrand(brandDto);
 		return ResponseEntity.status(HttpStatus.CREATED.value()).build();
 	}
 
-	// PUT http://localhost:8081/product-api/v1/brands
-	@PutMapping("/brands")
+	// PUT http://localhost:8081/product-api/v1/admin/brands
+	@PutMapping("/admin/brands")
 	ResponseEntity<Void> updateBrand(@RequestBody BrandDto brandDto) {
 		brandService.updateBrand(brandDto);
 		return ResponseEntity.accepted().build();
 	}
 
-	// DELETE http://localhost:8081/product-api/v1/brands/brandId/1
-	@DeleteMapping("/brands/brandId/{brandId}")
+	// DELETE http://localhost:8081/product-api/v1/admin/brands/brandId/1
+	@DeleteMapping("/admin/brands/brandId/{brandId}")
 	ResponseEntity<Void> deleteBrand(@PathVariable int brandId) {
 		brandService.deleteBrand(brandId);
 		return ResponseEntity.ok().build();
