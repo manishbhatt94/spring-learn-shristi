@@ -1,0 +1,36 @@
+services:
+    product-service:
+        build: .
+        image: product-jwt
+        container_name: productrest_container
+        ports:
+            - 8082:8081
+        networks:
+            - product_network
+        environment:
+            SPRING_DATASOURCE_URL: ${DB_URL}
+            SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+            SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+            JWT_SECRET: ${JWT_SECRET}
+        depends_on:
+            mysqlservice:
+                condition: service_healthy
+
+    mysqlservice:
+        image: mysql:8.0
+        container_name: sqlcontainer
+        ports:
+            - 3307:3306
+        networks:
+            - product_network
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_NAME}
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u${DB_USERNAME}", "-p${DB_PASSWORD}"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+
+networks:
+    product_network:

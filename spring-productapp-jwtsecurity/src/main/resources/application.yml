@@ -2,9 +2,14 @@ spring:
     application:
         name: spring-productapp-jwtsecurity
     datasource:
-        url: jdbc:mysql://localhost:3306/jfsseptkart?rewriteBatchedStatements=true
-        username: root
-        password: manish
+        # JDBC connection string for connecting to ==>
+        # (a) MySQL running locally:
+        # url: jdbc:mysql://localhost:3306/jfsseptkart?rewriteBatchedStatements=true
+        # (b) MySQL running in its own docker container:
+        # url: jdbc:mysql://sqlcontainer:3306/productkart?rewriteBatchedStatements=true
+        url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/jfsseptkart?rewriteBatchedStatements=true}
+        username: ${SPRING_DATASOURCE_USERNAME:root}
+        password: ${SPRING_DATASOURCE_PASSWORD:manish}
     jpa:
         show-sql: true
         hibernate:
@@ -15,4 +20,5 @@ server:
 
 jwt:
     # Secret Key for signing & verifying JWT - Generate using https://jwtsecrets.com/ (Used secret length of 512 bits)
-    secret: "bdaa5497ddd6570f96c5549c6068d7488172418a760a40e8a9c627b527e52a4617116e8730fd9d4977fe59d129d63ea1e076ff174cd29db2268a04094f402790"
+    # secret: "bdaa5497ddd6570f96c5549c6068d7488172418a760a40e8a9c627b527e52a4617116e8730fd9d4977fe59d129d63ea1e076ff174cd29db2268a04094f402790"
+    secret: ${JWT_SECRET:bdaa5497ddd6570f96c5549c6068d7488172418a760a40e8a9c627b527e52a4617116e8730fd9d4977fe59d129d63ea1e076ff174cd29db2268a04094f402790}
